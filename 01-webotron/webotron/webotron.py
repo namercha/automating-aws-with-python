@@ -30,10 +30,10 @@ def setup_bucket(bucket):
     s3_bucket = None
     try:
         if session.region_name =='us-east-1':
-            s3_bucket = s3.create_bucket(Bucket='nabil.pro',)
+            s3_bucket = s3.create_bucket(Bucket=bucket,)
         else:
             s3_bucket = s3.create_bucket(
-            Bucket='nabil.pro',
+            Bucket=bucket,
             CreateBucketConfiguration={'LocationConstraint': session.region_name})
     except ClientError as e:
         if e.response['Error']['Code'] == 'BucketAlreadyOwnedByYou':
