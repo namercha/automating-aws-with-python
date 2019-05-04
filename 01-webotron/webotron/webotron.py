@@ -1,9 +1,7 @@
 # !/usr/bin/python
 # -*- coding: utf-8 -*-
 
-
 """ Webotron: Deploy websites with AWS.
-
 Webotron automates the process of deploying static websites on AWS.
 - Configure AWS S3 buckets
  - Create them
@@ -12,7 +10,6 @@ Webotron automates the process of deploying static websites on AWS.
 - Configure DNS with Route 53
 - Configure a CDN and SSL with CloudFront
 """
-
 
 import boto3
 import click
@@ -30,7 +27,8 @@ def cli(profile):
 
     session_cfg = {}
     if profile:
-            session_cfg['profile_name'] = profile
+        session_cfg['profile_name'] = profile
+
     session = boto3.Session(**session_cfg)
     bucket_manager = BucketManager(session)
 
@@ -64,10 +62,9 @@ def setup_bucket(bucket):
 @click.argument('bucket')
 def sync(pathname, bucket):
     """Sync contents of PATHNAME to BUCKET."""
-    # s3_bucket = s3.Bucket(bucket)
     bucket_manager.sync(pathname, bucket)
+    print(bucket_manager.get_bucket_url(bucket_manager.s3.Bucket(bucket)))
 
 
 if __name__ == '__main__':
-    # print("You are operating in: " + session.region_name)
     cli()
