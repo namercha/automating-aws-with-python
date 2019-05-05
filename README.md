@@ -14,3 +14,4 @@ Webotron currently has the following features:
 - Sync directory tree to bucket
 - Set AWS profile with --profile=<profileName>
 - Configure route53 domain
+- Setup CloudFront and use SSL with the domain
