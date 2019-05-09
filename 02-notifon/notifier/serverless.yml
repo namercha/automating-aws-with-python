@@ -20,6 +20,9 @@ service: notifon-notifier # NOTE: update this with your service name
 provider:
   name: aws
   runtime: python3.7
+  profile: ${file(../config.${self:provider.stage}.json):notifier.profile}
+  environment:
+    SLACK_WEBHOOK_URL: ${file(../config.${self:provider.stage}.json):notifier.slack_webhook_url}
 
 # you can overwrite defaults here
 #  stage: dev
@@ -55,8 +58,8 @@ provider:
 #    - exclude-me-dir/**
 
 functions:
-  hello:
-    handler: handler.hello
+  post-to-slack:
+    handler: handler.post_to_slack
     events:
       - cloudwatchEvent:
           event:
