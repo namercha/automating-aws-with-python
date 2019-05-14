@@ -1,0 +1,4 @@
+
+        [console_scripts]
+        webotron=webotron.webotron:cli
+    
